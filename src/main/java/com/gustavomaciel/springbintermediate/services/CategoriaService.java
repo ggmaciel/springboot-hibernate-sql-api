@@ -11,6 +11,7 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import com.gustavomaciel.springbintermediate.domain.Categoria;
+import com.gustavomaciel.springbintermediate.dto.CategoriaDTO;
 import com.gustavomaciel.springbintermediate.repositories.CategoriaRepository;
 import com.gustavomaciel.springbintermediate.services.exceptions.DataIntegrityException;
 import com.gustavomaciel.springbintermediate.services.exceptions.ObjectNotFoundException;
@@ -56,5 +57,9 @@ public class CategoriaService {
 		.of(page, linesPerPage, Direction.valueOf(direction),orderBy);
 		
 		return repo.findAll(pageRequest);
+	}
+	
+	public Categoria fromDTO(CategoriaDTO objDto) {
+		return new Categoria(objDto.getId(), objDto.getName());
 	}
 }
